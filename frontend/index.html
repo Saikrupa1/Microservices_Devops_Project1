@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DevOps Demo App</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Microservices App</title>
 </head>
 <body>
 
-    <h1>🚀 DevOps Project</h1>
-    <p>Welcome to your first microservice frontend!</p>
+<h1>🚀 DevOps Microservices App</h1>
 
-    <button onclick="showMessage()">Click Me</button>
+<button onclick="loadProducts()">Load Products</button>
 
-    <p id="message"></p>
+<ul id="list"></ul>
 
-    <script src="script.js"></script>
+<script>
+function loadProducts() {
+    fetch("http://product-service:5000/products")
+        .then(res => res.json())
+        .then(data => {
+            let list = document.getElementById("list");
+            list.innerHTML = "";
+            data.forEach(p => {
+                let li = document.createElement("li");
+                li.innerText = p.name;
+                list.appendChild(li);
+            });
+        });
+}
+</script>
+
 </body>
 </html>
