@@ -1,6 +1,8 @@
 from flask import Flask, jsonify
+from flask_cors import CORS  # <--- Add this
 
 app = Flask(_name_)
+CORS(app)  # <--- Add this to allow the frontend to connect
 
 @app.route("/products")
 def products():
